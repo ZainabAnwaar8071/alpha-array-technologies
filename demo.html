@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alpha Array Technologies – Transform Your Ideas Into Digital Reality</title>
+  <meta name="description" content="Alpha Array Technologies: Web, mobile, and custom software solutions. Transform your ideas into digital reality." />
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #111729;
+      --muted: #8ea0b9;
+      --text: #e6edf6;
+      --brand: #6ee7ff;
+      --brand-2: #a78bfa;
+      --accent: #22d3ee;
+      --ring: rgba(110,231,255,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text); background: radial-gradient(1200px 700px at 80% -10%, rgba(167,139,250,.15), transparent),
+               radial-gradient(1000px 600px at 10% -10%, rgba(110,231,255,.12), transparent), var(--bg);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: rgba(11,15,26,.6); border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; padding: .9rem 0;
+    }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .4px; }
+    .brand .logo {
+      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 6px 24px rgba(110,231,255,.25), inset 0 0 24px rgba(167,139,250,.35);
+      font-weight: 800; color: #0b0f1a;
+    }
+    .menu { display: none; gap: 1.25rem; font-weight: 600; }
+    .menu a { color: var(--muted); }
+    .menu a:hover { color: #fff; }
+    .nav-cta { display: none; gap: .75rem; }
+    .btn {
+      padding: .65rem 1rem; border-radius: .8rem; border: 1px solid rgba(255,255,255,.08);
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color: #fff; font-weight: 700; letter-spacing: .2px;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(110,231,255,.18); }
+    .btn.brand { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0f1a; border: none; }
+
+    .hamb { display: inline-flex; gap: .5rem; align-items: center; }
+    .hamb button { all: unset; cursor: pointer; padding: .5rem; border-radius: .6rem; }
+    .hamb svg { width: 24px; height: 24px; fill: var(--text); }
+
+    /* Mobile drawer */
+    .drawer { display: none; }
+    .drawer.open { display: block; }
+    .drawer .panel { background: var(--card); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .drawer a { display: block; padding: 1rem 1.25rem; border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); }
+    .drawer a:hover { color: #fff; background: rgba(255,255,255,.04); }
+
+    /* Hero */
+    .hero { padding: 6rem 0 4rem; position: relative; overflow: hidden; }
+    .hero .grid { display: grid; gap: 2rem; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(110,231,255,.1); color: var(--brand);
+      border: 1px solid var(--ring); padding: .4rem .7rem; border-radius: 999px; font-weight: 700; font-size: .82rem; }
+    h1 { font-size: clamp(2rem, 3vw + 1.5rem, 3.6rem); line-height: 1.08; margin: 1rem 0 .75rem; }
+    .lead { color: var(--muted); font-size: clamp(1rem, .3vw + 1rem, 1.15rem); max-width: 60ch; }
+    .cta-row { display: flex; gap: .75rem; margin-top: 1.25rem; flex-wrap: wrap; }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08); border-radius: 1.25rem; padding: 1rem; display: grid; gap: .75rem;
+    }
+
+    /* Logos */
+    .logo-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; opacity: .9; margin-top: 2rem; }
+    .logo-badge { padding: .8rem 1rem; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: .9rem; text-align: center; color: var(--muted); font-weight: 700; }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.8rem; }
+    .section-head h2 { margin: 0; font-size: clamp(1.6rem, 1.6vw + 1rem, 2.2rem); }
+    .sub { color: var(--muted); max-width: 65ch; }
+
+    /* Cards grid */
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 1rem; padding: 1.2rem; }
+    .card h3 { margin-top: .2rem; margin-bottom: .4rem; }
+    .card p { color: var(--muted); }
+
+    /* Process */
+    .steps { display: grid; gap: 1rem; }
+    .step { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+    .step .num { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #0b0f1a; background: linear-gradient(135deg, var(--brand), var(--brand-2)); }
+
+    /* Portfolio */
+    .portfolio { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .work { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.06); border-radius: 1rem; overflow: hidden; }
+    .work .thumb { aspect-ratio: 16/9; background: #0f172a; display: grid; place-items: center; color: var(--muted); font-weight: 700; }
+    .work .meta { padding: 1rem; }
+
+    /* Pricing */
+    .pricing { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .price { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 1rem; padding: 1.2rem; }
+    .price .tag { font-size: 2rem; font-weight: 800; }
+
+    /* Contact */
+    form { display: grid; gap: .9rem; }
+    input, textarea { width: 100%; padding: .8rem 1rem; border-radius: .7rem; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: #fff; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+
+    /* Footer */
+    footer { padding: 2.5rem 0; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06); }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      .menu { display: flex; }
+      .nav-cta { display: flex; }
+      .hamb { display: none; }
+      .hero { padding: 7rem 0 5rem; }
+      .hero .grid { grid-template-columns: 1.2fr 1fr; }
+      .logo-row { grid-template-columns: repeat(4,1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .portfolio { grid-template-columns: repeat(3, 1fr); }
+      .pricing { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="logo">AA</span>
+        <span>Alpha Array <span style="opacity:.7">Technologies</span></span>
+      </a>
+      <nav class="menu" aria-label="primary">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn" href="#work">See Work</a>
+        <a class="btn brand" href="#contact">Get a Quote</a>
+      </div>
+      <div class="hamb">
+        <button id="openMenu" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="drawer" role="dialog" aria-modal="true">
+      <div class="panel">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <span class="badge">🚀 Transform Your Ideas Into Digital Reality</span>
+          <h1>Custom Web, Mobile, and Software built for real‑world impact</h1>
+          <p class="lead">We design and develop modern digital products—responsive websites, robust APIs, and polished mobile apps—so you can launch faster and scale with confidence.</p>
+          <div class="cta-row">
+            <a class="btn brand" href="#contact">Start a Project</a>
+            <a class="btn" href="#work">View Portfolio</a>
+          </div>
+          <div class="logo-row" aria-label="Trusted by">
+            <div class="logo-badge">Next.js</div>
+            <div class="logo-badge">React</div>
+            <div class="logo-badge">Flutter</div>
+            <div class="logo-badge">Node.js</div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Laptop with code editor" />
+          <small style="color:var(--muted)">From concept to code: design systems, APIs, and cloud—delivered end‑to‑end.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Services</h2>
+        <p class="sub">Full‑stack development tailored to your goals. We blend elegant UX with reliable engineering across the entire product lifecycle.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Web Development</h3>
+          <p>Marketing sites, dashboards, and SaaS apps using React/Next.js, Node.js, and modern CSS. SEO‑ready, fast, and accessible.</p>
+        </article>
+        <article class="card">
+          <h3>Mobile Apps</h3>
+          <p>Cross‑platform iOS/Android apps with Flutter or React Native, integrated with cloud backends and analytics.</p>
+        </article>
+        <article class="card">
+          <h3>APIs & Cloud</h3>
+          <p>Scalable REST/GraphQL services on AWS/GCP, with CI/CD, testing, and observability baked in.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Process</h2>
+        <p class="sub">A collaborative, iterative flow to de‑risk delivery and get value into users’ hands quickly.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <h3>Discovery & Scope</h3>
+            <p class="sub">We clarify goals, users, success metrics, and constraints to map an achievable MVP.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <h3>Design & Prototype</h3>
+            <p class="sub">Wireframes to high‑fidelity UI, then clickable prototypes to validate fast.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <h3>Build & Integrate</h3>
+            <p class="sub">Modular components, typed APIs, and automated testing ensure quality at speed.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <h3>Launch & Iterate</h3>
+            <p class="sub">We ship, measure, and improve using real‑world data and feedback.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Selected Work</h2>
+        <p class="sub">A snapshot of projects across education, e‑commerce, and productivity.</p>
+      </div>
+      <div class="portfolio">
+        <article class="work">
+          <div class="thumb">Project Screenshot</div>
+          <div class="meta">
+            <strong>Learning Portal</strong>
+            <p class="sub">Multi‑tenant LMS with real‑time classes, Stripe billing, and admin analytics.</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb">Project Screenshot</div>
+          <div class="meta">
+            <strong>Retail Commerce</strong>
+            <p class="sub">Headless storefront + inventory sync, 99.9% uptime and sub‑second loads.</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb">Project Screenshot</div>
+          <div class="meta">
+            <strong>Team Productivity</strong>
+            <p class="sub">Web + mobile task manager with offline sync and push notifications.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pricing</h2>
+        <p class="sub">Transparent options for different stages. All plans include version control, code review, and QA.</p>
+      </div>
+      <div class="pricing">
+        <div class="price">
+          <h3>Starter</h3>
+          <div class="tag">$1,499</div>
+          <p class="sub">Landing page, basic CMS, contact form. Delivery in ~2 weeks.</p>
+          <a class="btn" href="#contact">Choose Starter</a>
+        </div>
+        <div class="price">
+          <h3>Growth</h3>
+          <div class="tag">$4,900</div>
+          <p class="sub">Marketing site + blog, integrations, analytics, and SEO enhancements.</p>
+          <a class="btn brand" href="#contact">Choose Growth</a>
+        </div>
+        <div class="price">
+          <h3>Custom</h3>
+          <div class="tag">Custom</div>
+          <p class="sub">Define your scope: SaaS, mobile app, dashboards, and more.</p>
+          <a class="btn" href="#contact">Request Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p class="sub">Tell us about your idea. We’ll respond within one business day.</p>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch.');">
+        <div class="grid-3" style="grid-template-columns: 1fr 1fr 1fr; gap: .9rem;">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <input type="text" name="company" placeholder="Company (optional)" />
+        </div>
+        <textarea name="message" rows="5" placeholder="Project goals, timeline, and budget range…" required></textarea>
+        <div class="cta-row">
+          <button class="btn brand" type="submit">Send Message</button>
+          <a class="btn" href="mailto:hello@alphaarray.example">Email Us</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+      <div>© <span id="year"></span> Alpha Array Technologies. All rights reserved.</div>
+      <div>Built with semantic HTML, modern CSS, and a dash of JS.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const openBtn = document.getElementById('openMenu');
+    const drawer = document.getElementById('mobileMenu');
+    openBtn?.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      openBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    // Close drawer on link click (mobile)
+    drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
